@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Health Facilities - Smart Health Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nearby-locator.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>Smart Health Advisor</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <!-- <a href="features.html">Features</a> -->
+                <a href="ai-advisor.html">AI Advisor</a>
+                <a href="health-metrics.html">Health Metrics</a>
+                <a href="nearby-locator.html" class="active">Find Facilities</a>
+                <a href="assessments.html">Assessments</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="locator-page">
+        <div class="locator-header">
+            <div class="header-content">
+                <h1>Find Nearby Health Facilities</h1>
+                <p>Locate clinics, pharmacies, and hospitals in your area</p>
+            </div>
+        </div>
+
+        <div class="locator-container">
+            <div class="search-panel">
+                <div class="search-box">
+                    <input type="text" id="locationSearch" placeholder="Enter your location or use current location">
+                    <button id="useCurrentLocation" class="btn btn-primary">
+                        <i class="fas fa-location-arrow"></i> Use Current Location
+                    </button>
+                </div>
+                
+                <div class="facility-filters">
+                    <h3>Filter by Type</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-type="all">
+                            <i class="fas fa-hospital"></i> All
+                        </button>
+                        <button class="filter-btn" data-type="clinic">
+                            <i class="fas fa-clinic-medical"></i> Clinics
+                        </button>
+                        <button class="filter-btn" data-type="pharmacy">
+                            <i class="fas fa-prescription-bottle-medical"></i> Pharmacies
+                        </button>
+                        <button class="filter-btn" data-type="hospital">
+                            <i class="fas fa-hospital-alt"></i> Hospitals
+                        </button>
+                    </div>
+                </div>
+
+                <div class="additional-filters">
+                    <h3>Additional Filters</h3>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" id="openNow"> Open Now
+                        </label>
+                        <label>
+                            <input type="checkbox" id="wheelchairAccessible"> Wheelchair Accessible
+                        </label>
+                        <label>
+                            <input type="checkbox" id="acceptsInsurance"> Accepts Insurance
+                        </label>
+                    </div>
+                    <div class="distance-filter">
+                        <label for="maxDistance">Maximum Distance:</label>
+                        <select id="maxDistance">
+                            <option value="1">1 mile</option>
+                            <option value="3">3 miles</option>
+                            <option value="5" selected>5 miles</option>
+                            <option value="10">10 miles</option>
+                            <option value="20">20 miles</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-panel">
+                <div id="map" class="map-container"></div>
+                <div class="map-controls">
+                    <button id="zoomIn" class="map-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button id="zoomOut" class="map-btn">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button id="centerMap" class="map-btn">
+                        <i class="fas fa-crosshairs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <div class="results-header">
+                    <h3>Nearby Facilities</h3>
+                    <div class="sort-options">
+                        <select id="sortFacilities">
+                            <option value="distance">Distance</option>
+                            <option value="rating">Rating</option>
+                            <option value="name">Name</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="facilitiesList" class="facilities-list">
+                    <!-- Facilities will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Facility Details Modal -->
+        <div class="modal" id="facilityModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="facilityName">Facility Name</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="facility-details">
+                        <div class="facility-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="facilityAddress">Address</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span id="facilityPhone">Phone</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span id="facilityHours">Hours</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span id="facilityRating">Rating</span>
+                            </div>
+                        </div>
+                        <div class="facility-actions">
+                            <button class="btn btn-primary" id="getDirections">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </button>
+                            <button class="btn btn-outline" id="saveFacility">
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                            <button class="btn btn-outline" id="shareFacility">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                        <div class="facility-amenities">
+                            <h4>Amenities</h4>
+                            <div id="facilityAmenities" class="amenities-list">
+                                <!-- Amenities will be populated here -->
+                            </div>
+                        </div>
+                        <div class="facility-reviews">
+                            <h4>Reviews</h4>
+                            <div id="facilityReviews" class="reviews-list">
+                                <!-- Reviews will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="health-metrics.html">Health Metrics</a></li>
+                    <li><a href="nearby-locator.html">Find Facilities</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@smarthealthadvisor.com</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Smart Health Advisor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/nearby-locator.js"></script>
+</body>
+</html> 

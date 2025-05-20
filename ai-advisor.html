@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Advisor - Smart Health Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-advisor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>Smart Health Advisor</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="ai-advisor.html" class="active">AI Advisor</a>
+                <a href="health-metrics.html">Health Metrics</a>
+                <a href="nearby-locator.html">Find Facilities</a>
+                <a href="assessments.html">Assessments</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="ai-advisor-container">
+        <div class="ai-sidebar">
+            <div class="user-profile">
+                <div class="profile-image">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>Welcome, User</h3>
+                    <p>Your AI Health Assistant</p>
+                </div>
+            </div>
+            <div class="quick-actions">
+                <h4>Quick Actions</h4>
+                <button class="action-btn" data-action="symptoms">
+                    <i class="fas fa-thermometer-half"></i>
+                    Check Symptoms
+                </button>
+                <button class="action-btn" data-action="diet">
+                    <i class="fas fa-utensils"></i>
+                    Diet Advice
+                </button>
+                <button class="action-btn" data-action="exercise">
+                    <i class="fas fa-running"></i>
+                    Exercise Plan
+                </button>
+                <button class="action-btn" data-action="stress">
+                    <i class="fas fa-brain"></i>
+                    Stress Management
+                </button>
+            </div>
+            <div class="health-insights">
+                <h4>Your Health Insights</h4>
+                <div class="insight-card">
+                    <i class="fas fa-heart"></i>
+                    <div class="insight-info">
+                        <h5>Heart Health</h5>
+                        <p>Based on your recent activity</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <i class="fas fa-bed"></i>
+                    <div class="insight-info">
+                        <h5>Sleep Quality</h5>
+                        <p>Track your sleep patterns</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <i class="fas fa-walking"></i>
+                    <div class="insight-info">
+                        <h5>Daily Activity</h5>
+                        <p>Monitor your movement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-chat-container">
+            <div class="chat-header">
+                <h2>AI Health Assistant</h2>
+                <div class="chat-status">
+                    <span class="status-dot"></span>
+                    <span>Online</span>
+                </div>
+            </div>
+            <div class="chat-messages" id="aiChatMessages">
+                <div class="message ai-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hello! I'm your AI Health Assistant. How can I help you today? I can provide information about:</p>
+                        <ul>
+                            <li>General health advice</li>
+                            <li>Diet and nutrition</li>
+                            <li>Exercise recommendations</li>
+                            <li>Stress management</li>
+                            <li>Sleep improvement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <div class="input-actions">
+                    <button class="input-action-btn" title="Attach File">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button class="input-action-btn" title="Voice Input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <form id="chatForm" class="chat-form">
+                    <input type="text" id="aiChatInput" placeholder="Type your health question here..." required>
+                    <button type="submit" id="aiSendMessage" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="ai-insights-panel">
+            <div class="panel-header">
+                <h3>Health Insights</h3>
+                <button class="refresh-btn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            <div class="insights-content">
+                <div class="insight-section">
+                    <h4>Today's Summary</h4>
+                    <div class="summary-card">
+                        <div class="summary-item">
+                            <i class="fas fa-walking"></i>
+                            <span>Steps: 5,432</span>
+                        </div>
+                        <div class="summary-item">
+                            <i class="fas fa-fire"></i>
+                            <span>Calories: 1,850</span>
+                        </div>
+                        <div class="summary-item">
+                            <i class="fas fa-bed"></i>
+                            <span>Sleep: 7.5 hrs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-section">
+                    <h4>Recommendations</h4>
+                    <div class="recommendation-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <p>Consider increasing your daily water intake based on your activity level.</p>
+                    </div>
+                    <div class="recommendation-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <p>Your sleep pattern suggests you might benefit from an earlier bedtime.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-section health-metrics">
+                <div class="section-header">
+                    <h4>Health Metrics</h4>
+                    <div class="metric-controls">
+                        <select id="metricTimeRange" class="metric-select">
+                            <option value="7">Last 7 Days</option>
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
+                            <option value="365">Last Year</option>
+                        </select>
+                        <button class="refresh-btn" id="refreshMetrics">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <!-- Vital Signs Card -->
+                    <div class="metric-card vital-signs">
+                        <h5>Vital Signs</h5>
+                        <div class="metric-chart" id="vitalSignsChart"></div>
+                        <div class="metric-details">
+                            <div class="metric-item">
+                                <span class="metric-label">Heart Rate</span>
+                                <span class="metric-value" id="heartRate">-- bpm</span>
+                                <span class="metric-trend" id="heartRateTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Blood Pressure</span>
+                                <span class="metric-value" id="bloodPressure">--/-- mmHg</span>
+                                <span class="metric-trend" id="bloodPressureTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Temperature</span>
+                                <span class="metric-value" id="temperature">-- °F</span>
+                                <span class="metric-trend" id="temperatureTrend"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Metrics Card -->
+                    <div class="metric-card activity">
+                        <h5>Activity</h5>
+                        <div class="metric-chart" id="activityChart"></div>
+                        <div class="metric-details">
+                            <div class="metric-item">
+                                <span class="metric-label">Steps</span>
+                                <span class="metric-value" id="steps">-- steps</span>
+                                <span class="metric-trend" id="stepsTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Calories</span>
+                                <span class="metric-value" id="calories">-- kcal</span>
+                                <span class="metric-trend" id="caloriesTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Active Minutes</span>
+                                <span class="metric-value" id="activeMinutes">-- min</span>
+                                <span class="metric-trend" id="activeMinutesTrend"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sleep Metrics Card -->
+                    <div class="metric-card sleep">
+                        <h5>Sleep</h5>
+                        <div class="metric-chart" id="sleepChart"></div>
+                        <div class="metric-details">
+                            <div class="metric-item">
+                                <span class="metric-label">Sleep Duration</span>
+                                <span class="metric-value" id="sleepDuration">-- hrs</span>
+                                <span class="metric-trend" id="sleepDurationTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Sleep Quality</span>
+                                <span class="metric-value" id="sleepQuality">-- %</span>
+                                <span class="metric-trend" id="sleepQualityTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Deep Sleep</span>
+                                <span class="metric-value" id="deepSleep">-- min</span>
+                                <span class="metric-trend" id="deepSleepTrend"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nutrition Metrics Card -->
+                    <div class="metric-card nutrition">
+                        <h5>Nutrition</h5>
+                        <div class="metric-chart" id="nutritionChart"></div>
+                        <div class="metric-details">
+                            <div class="metric-item">
+                                <span class="metric-label">Water Intake</span>
+                                <span class="metric-value" id="waterIntake">-- oz</span>
+                                <span class="metric-trend" id="waterIntakeTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Calories In</span>
+                                <span class="metric-value" id="caloriesIn">-- kcal</span>
+                                <span class="metric-trend" id="caloriesInTrend"></span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Macro Balance</span>
+                                <span class="metric-value" id="macroBalance">-- %</span>
+                                <span class="metric-trend" id="macroBalanceTrend"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Score Card -->
+                <div class="metric-card health-score">
+                    <h5>Overall Health Score</h5>
+                    <div class="score-container">
+                        <div class="score-circle" id="healthScoreCircle">
+                            <span class="score-value" id="healthScore">--</span>
+                            <span class="score-label">/100</span>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-factor">
+                                <span class="factor-label">Physical</span>
+                                <div class="factor-bar">
+                                    <div class="factor-progress" id="physicalScore"></div>
+                                </div>
+                            </div>
+                            <div class="score-factor">
+                                <span class="factor-label">Mental</span>
+                                <div class="factor-bar">
+                                    <div class="factor-progress" id="mentalScore"></div>
+                                </div>
+                            </div>
+                            <div class="score-factor">
+                                <span class="factor-label">Lifestyle</span>
+                                <div class="factor-bar">
+                                    <div class="factor-progress" id="lifestyleScore"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Insights -->
+                <div class="metric-card insights">
+                    <h5>Health Insights</h5>
+                    <div class="insights-list" id="healthInsightsList">
+                        <!-- Insights will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Smart Health Advisor. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="ai-advisor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/health-metrics.js"></script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Metrics - Smart Health Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-advisor.css">
+    <link rel="stylesheet" href="health-metrics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>Smart Health Advisor</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="ai-advisor.html">AI Advisor</a>
+                <a href="health-metrics.html" class="active">Health Metrics</a>
+                <a href="nearby-locator.html">Find Facilities</a>
+                <a href="assessments.html">Assessments</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="metrics-page">
+        <div class="metrics-header">
+            <div class="header-content">
+                <h1>Health Metrics Dashboard</h1>
+                <p>Track and analyze your health data with advanced metrics and insights</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="addMetricBtn">
+                    <i class="fas fa-plus"></i> Add New Metric
+                </button>
+                <button class="btn btn-outline" id="exportDataBtn">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+        </div>
+
+        <div class="metrics-controls">
+            <div class="date-range">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate">
+            </div>
+            <div class="view-options">
+                <button class="view-btn active" data-view="daily">
+                    <i class="fas fa-calendar-day"></i> Daily
+                </button>
+                <button class="view-btn" data-view="weekly">
+                    <i class="fas fa-calendar-week"></i> Weekly
+                </button>
+                <button class="view-btn" data-view="monthly">
+                    <i class="fas fa-calendar-alt"></i> Monthly
+                </button>
+            </div>
+        </div>
+
+        
+
+            <!-- Overview Section -->
+            <section class="metrics-section overview">
+                <h2>Health Overview</h2>
+                <div class="overview-cards">
+                    <div class="overview-card">
+                        <div class="card-header">
+                            <h3>Overall Health Score</h3>
+                            <span class="trend-indicator positive">
+                                <i class="fas fa-arrow-up"></i> 5%
+                            </span>
+                        </div>
+                        <div class="score-display">
+                            <div class="circular-progress" id="overallScore">
+                                <span class="score">85</span>
+                                <span class="max">/100</span>
+                            </div>
+                            <div class="score-breakdown">
+                                <div class="breakdown-item">
+                                    <span>Physical</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 88%"></div>
+                                    </div>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span>Mental</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 82%"></div>
+                                    </div>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span>Lifestyle</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-header">
+                            <h3>Key Metrics</h3>
+                            <button class="refresh-btn">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <div class="key-metrics">
+                            <div class="metric-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <div class="metric-info">
+                                    <span class="label">Heart Rate</span>
+                                    <span class="value">72 bpm</span>
+                                    <span class="trend positive">-2 bpm</span>
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <i class="fas fa-walking"></i>
+                                <div class="metric-info">
+                                    <span class="label">Daily Steps</span>
+                                    <span class="value">8,432</span>
+                                    <span class="trend positive">+12%</span>
+                                </div>
+                            </div>
+                            <div class="metric-item">
+                                <i class="fas fa-bed"></i>
+                                <div class="metric-info">
+                                    <span class="label">Sleep Duration</span>
+                                    <span class="value">7.5 hrs</span>
+                                    <span class="trend negative">-0.5 hrs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Metrics Section -->
+            <section class="metrics-section detailed">
+                <div class="section-header">
+                    <h2>Detailed Metrics</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-outline" id="compareMetricsBtn">
+                            <i class="fas fa-chart-line"></i> Compare Metrics
+                        </button>
+                        <button class="btn btn-outline" id="setGoalsBtn">
+                            <i class="fas fa-bullseye"></i> Set Goals
+                        </button>
+                    </div>
+                </div>
+
+                <div class="metrics-tabs">
+                    <button class="tab-btn active" data-tab="vitals">Vital Signs</button>
+                    <button class="tab-btn" data-tab="activity">Activity</button>
+                    <button class="tab-btn" data-tab="sleep">Sleep</button>
+                    <button class="tab-btn" data-tab="nutrition">Nutrition</button>
+                    <button class="tab-btn" data-tab="mental">Mental Health</button>
+                </div>
+
+                <div class="tab-content active" id="vitals">
+                    <div class="chart-container">
+                        <canvas id="vitalsChart"></canvas>
+                    </div>
+                    <div class="metrics-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Heart Rate</th>
+                                    <th>Blood Pressure</th>
+                                    <th>Temperature</th>
+                                    <th>Oxygen Level</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vitalsTableBody">
+                                <!-- Data will be populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Other tab contents will be similar but with different metrics -->
+            </section>
+
+            <!-- Goals and Progress Section -->
+            <section class="metrics-section goals">
+                <h2>Health Goals & Progress</h2>
+                <div class="goals-grid">
+                    <div class="goal-card">
+                        <div class="goal-header">
+                            <h3>Daily Steps</h3>
+                            <span class="goal-status active">Active</span>
+                        </div>
+                        <div class="goal-progress">
+                            <div class="progress-circle" data-progress="75">
+                                <span class="progress-text">7,500</span>
+                                <span class="goal-text">/10,000</span>
+                            </div>
+                            <div class="goal-details">
+                                <p>Daily Goal: 10,000 steps</p>
+                                <p>Current Streak: 5 days</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More goal cards will be added dynamically -->
+                </div>
+            </section>
+
+            <!-- Insights and Recommendations Section -->
+            <section class="metrics-section insights">
+                <h2>Health Insights & Recommendations</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="insight-content">
+                            <h3>Sleep Pattern Analysis</h3>
+                            <p>Your sleep quality has improved by 15% this week. Consider maintaining your current bedtime routine.</p>
+                            <div class="insight-actions">
+                                <button class="btn btn-text">View Details</button>
+                                <button class="btn btn-text">Set Reminder</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More insight cards will be added dynamically -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add Metric Modal -->
+    <div class="modal" id="addMetricModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Metric</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addMetricForm">
+                    <div class="form-group">
+                        <label for="metricType">Metric Type</label>
+                        <select id="metricType" required>
+                            <option value="">Select a metric type</option>
+                            <option value="vital">Vital Sign</option>
+                            <option value="activity">Activity</option>
+                            <option value="sleep">Sleep</option>
+                            <option value="nutrition">Nutrition</option>
+                            <option value="mental">Mental Health</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="metricValue">Value</label>
+                        <input type="number" id="metricValue" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="metricDate">Date & Time</label>
+                        <input type="datetime-local" id="metricDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="metricNotes">Notes</label>
+                        <textarea id="metricNotes" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Metric</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Smart Health Advisor. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/health-metrics.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <script src="js/nearby-locator.js"></script>
+</body>
+</html> 

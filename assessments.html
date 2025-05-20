@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Assessments - Smart Health Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="assessments.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation (Same as dashboard.html) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-heartbeat"></i>
+                <h2>Smart Health</h2>
+            </div>
+            <div class="user-profile">
+                <img src="images/user-profile.jpg" alt="User Profile">
+                <div>
+                    <h3>John Doe</h3>
+                    <p>Premium Member</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="health-metrics.html">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Health Metrics</span>
+                </a>
+                <a href="assessments.html" class="active">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Assessments</span>
+                </a>
+                <a href="ai-advisor.html">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Advisor</span>
+                </a>
+                <a href="appointments.html">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Appointments</span>
+                </a>
+                <a href="medications.html">
+                    <i class="fas fa-pills"></i>
+                    <span>Medications</span>
+                </a>
+                <a href="community.html">
+                    <i class="fas fa-users"></i>
+                    <span>Community</span>
+                </a>
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="help.html">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help</span>
+                </a>
+                <a href="logout.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for health topics, metrics...">
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="chat-btn">
+                        <i class="fas fa-comment-medical"></i>
+                        <span class="chat-badge">1</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <section class="page-header">
+                    <h1><i class="fas fa-clipboard-check"></i> Health Assessments</h1>
+                    <p>Evaluate different aspects of your health with our comprehensive assessments</p>
+                </section>
+
+                <div class="assessments-container">
+                    <div class="assessment-filters">
+                        <div class="filter-group">
+                            <label>Category:</label>
+                            <select id="categoryFilter">
+                                <option value="all">All Categories</option>
+                                <option value="physical">Physical Health</option>
+                                <option value="mental">Mental Health</option>
+                                <option value="nutrition">Nutrition</option>
+                                <option value="fitness">Fitness</option>
+                                <option value="sleep">Sleep</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Status:</label>
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="completed">Completed</option>
+                                <option value="recommended">Recommended</option>
+                                <option value="new">New</option>
+                            </select>
+                        </div>
+                        <div class="filter-group search">
+                            <input type="text" placeholder="Search assessments...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="assessment-grid">
+                        <!-- Recommended Assessments -->
+                        <div class="assessment-card recommended">
+                            <div class="assessment-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Recommended</div>
+                                <h3>Heart Health Risk Assessment</h3>
+                                <p>Evaluate your cardiovascular health and identify potential risk factors.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-clock"></i> 10-15 minutes</span>
+                                    <span><i class="fas fa-chart-bar"></i> 25 questions</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-primary">Start Assessment</button>
+                            </div>
+                        </div>
+
+                        <div class="assessment-card recommended">
+                            <div class="assessment-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Recommended</div>
+                                <h3>Mental Wellness Check</h3>
+                                <p>Assess your current mental health status and stress levels.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-clock"></i> 5-10 minutes</span>
+                                    <span><i class="fas fa-chart-bar"></i> 20 questions</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-primary">Start Assessment</button>
+                            </div>
+                        </div>
+
+                        <!-- Completed Assessments -->
+                        <div class="assessment-card completed">
+                            <div class="assessment-icon">
+                                <i class="fas fa-weight"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Completed</div>
+                                <h3>Body Composition Analysis</h3>
+                                <p>Understand your body composition and set realistic fitness goals.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-calendar-check"></i> Completed May 10, 2023</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-secondary">View Results</button>
+                            </div>
+                        </div>
+
+                        <div class="assessment-card completed">
+                            <div class="assessment-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Completed</div>
+                                <h3>Nutrition Habits Assessment</h3>
+                                <p>Evaluate your eating habits and identify areas for improvement.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-calendar-check"></i> Completed May 5, 2023</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-secondary">View Results</button>
+                            </div>
+                        </div>
+
+                        <!-- Available Assessments -->
+                        <div class="assessment-card">
+                            <div class="assessment-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Fitness</div>
+                                <h3>Fitness Level Test</h3>
+                                <p>Determine your current fitness level and get personalized workout recommendations.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-clock"></i> 15-20 minutes</span>
+                                    <span><i class="fas fa-chart-bar"></i> Physical activities</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-primary">Start Assessment</button>
+                            </div>
+                        </div>
+
+                        <div class="assessment-card">
+                            <div class="assessment-icon">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Sleep</div>
+                                <h3>Sleep Quality Assessment</h3>
+                                <p>Analyze your sleep patterns and get tips for better rest.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-clock"></i> 5-10 minutes</span>
+                                    <span><i class="fas fa-chart-bar"></i> 15 questions</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-primary">Start Assessment</button>
+                            </div>
+                        </div>
+
+                        <div class="assessment-card">
+                            <div class="assessment-icon">
+                                <i class="fas fa-smoking-ban"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Lifestyle</div>
+                                <h3>Smoking Cessation Readiness</h3>
+                                <p>Assess your readiness to quit smoking and get a personalized plan.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-clock"></i> 5-10 minutes</span>
+                                    <span><i class="fas fa-chart-bar"></i> 12 questions</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-primary">Start Assessment</button>
+                            </div>
+                        </div>
+
+                        <div class="assessment-card">
+                            <div class="assessment-icon">
+                                <i class="fas fa-allergies"></i>
+                            </div>
+                            <div class="assessment-content">
+                                <div class="assessment-tag">Health</div>
+                                <h3>Allergy Risk Assessment</h3>
+                                <p>Identify potential allergies and get recommendations for management.</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-clock"></i> 10-15 minutes</span>
+                                    <span><i class="fas fa-chart-bar"></i> 20 questions</span>
+                                </div>
+                            </div>
+                            <div class="assessment-action">
+                                <button class="btn btn-primary">Start Assessment</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="assessment-pagination">
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <span class="pagination-ellipsis">...</span>
+                        <button class="pagination-btn">8</button>
+                        <button class="pagination-btn next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assessments.js"></script>
+</body>
+</html>
